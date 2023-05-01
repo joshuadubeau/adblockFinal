@@ -14,9 +14,16 @@ chrome.webRequest.onBeforeRequest.addListener(
         console.log("Request from IP address:", details.ip || "Unknown");
         console.log("Request URL:", details.url);
         console.log("Request method:", details.method);
-        console.log("Request headers:", details.requestHeaders);
-        console.log("Request body:", details.requestBody || "Not available");
+        if (details.requestHeaders) {
+            console.log("Request headers:", details.requestHeaders);
+        }
+
+        if (details.requestBody) {
+            console.log("Request body:", details.requestBody || "Not available");
+        }
+        if (details.timeStamp) {
         console.log("Request initiated at:", new Date(details.timeStamp));
+        }
     },
     {urls: ["<all_urls>"]},
     ["blocking", "requestBody"]
